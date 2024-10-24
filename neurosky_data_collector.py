@@ -220,7 +220,7 @@ def validate_signal_type(signal_type):
         #de neuro_tracker, pero este es un buen ejemplo de como la señal debe de ser tratada
         #las clases de  igual no deberian de ser cambiadas, ya que se encargan de la comunicacion con todo lo demas
 
-"""
+
 def main():
     try:
         port = input("Especifica el puerto serial (ej. COM3 o /dev/ttyUSB0): ").strip()
@@ -257,7 +257,7 @@ def main():
     finally:
         if 'collector' in locals():
             collector.stop()
-"""
 
-#if __name__ == "__main__":
-#    main()
+
+if __name__ == "__main__":
+    main()
