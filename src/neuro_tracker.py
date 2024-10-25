@@ -1,5 +1,7 @@
-from src.modules.MockNeuroSkyDataCollector import MockNeuroSkyDataCollector
-from src.neurosky_data_collector import NeuroSkyDataCollector, validate_signal_type
+from modules.MockNeuroSkyDataCollector import MockNeuroSkyDataCollector
+from neurosky_data_collector import NeuroSkyDataCollector, validate_signal_type
+
+SAMPLE_FREQ = 512.0
 
 def main(mock=False):
     try:
@@ -16,11 +18,11 @@ def main(mock=False):
         collector_class = MockNeuroSkyDataCollector if mock else NeuroSkyDataCollector
 
         # Crear y configurar el colector de datos
-        collector = collector_class(signal_type=signal_type, graph=graph, csv_file=csv_file, save_to_csv=save_to_csv)
+        collector = collector_class(SAMPLE_FREQ,port=port,signal_type=signal_type, graph=graph, csv_file=csv_file, save_to_csv=save_to_csv)
         collector.connect()  # Este es el método que deberías verificar
 
         # Recolectar y mostrar datos (con una duración específica)
-        collector.collect_data(duration=10)  # Asegúrate de que la duración sea suficiente
+        collector.collect_data()  # Asegúrate de que la duración sea suficiente
         if graph:
             collector.animate_plot()  # Asegúrate de que esto funcione con tu mock
         else:
