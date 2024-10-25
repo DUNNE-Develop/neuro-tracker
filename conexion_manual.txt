@@ -1,0 +1,10 @@
+#Pasos para conectar el dispositivo en ambiente Linux de manera manual
+bluetoothctl    
+        power on
+        agent on
+        default-agent
+        scan on
+        connect E0: ... 56      hacer tab y esperar a que se conecte
+#Abrir esto en otra terminal, no cerrar ninguna de la dos 
+sudo rfcomm connect hci0 E0:7D:EA:E6:46:54
+
