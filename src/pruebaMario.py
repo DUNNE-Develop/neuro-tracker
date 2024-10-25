@@ -1,6 +1,6 @@
             #Recoleccion de Datos y almacenamiento en un archivo CSV
 
-from neurosky_data_collector import NeuroSkyDataCollector
+from src.neurosky_data_collector import NeuroSkyDataCollector
 
 port = "COM3"
 signal_type = "raw"

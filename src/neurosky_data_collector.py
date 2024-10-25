@@ -8,8 +8,11 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from modules.neurosky_interface import NeuroSkyInterface
+from src.modules.neurosky_interface import NeuroSkyInterface
+
 import threading
+
+import BrainwaveProcessor as bp
 
 SAMPLE_FREQ = 512.0
 
@@ -20,7 +23,7 @@ SAMPLE_FREQ = 512.0
         #hacer el lector de microvolts y calcular las formulas de atencion con la tranformada de fourier.
 
 class NeuroSkyDataCollector:
-    def __init__(self, sample_freq=SAMPLE_FREQ, port=None, signal_type='raw', graph=False, csv_file='data.csv', save_to_csv=True):
+    def __init__(self, sample_freq=SAMPLE_FREQ, port=None, signal_type='raw', graph=False, csv_file='data.csv', save_to_csv=True, use_mock=False):
         """
         Inicializa el recolector de datos del NeuroSky.
         :param sample_freq: Frecuencia de muestreo para la recolección de datos.
@@ -43,65 +46,80 @@ class NeuroSkyDataCollector:
         self.data_thread = None  
         self.csv_writer = None  # Variable para manejar el archivo CSV
         self.csv_file_handle = None  # Manejador del archivo CSV
+        self.use_mock = use_mock
+
+        #instancia de la clase brainwaveprocessor
+        self.brainwave_processor = bp.BrainwaveProcessor()
 
     def connect(self):
         """
-        Conectar al dispositivo NeuroSky. Lanza una excepción si no es posible conectar.
+        Conectar al dispositivo NeuroSky o inicializar el mock.
         """
         try:
-            if not self.port:
-                raise ValueError("El puerto serial no ha sido especificado.")
-
-            self.interface = NeuroSkyInterface(self.port)
-            print(f"Conectado a NeuroSky en el puerto {self.port}.")
-        except serial.SerialException as e:
-            raise ConnectionError(f"Error de conexión con el puerto {self.port}: {e}")
+            if self.use_mock:
+                # Usar el mock si `use_mock` es True
+                self.interface = MockNeuroSkyInterface(self.port)
+                print("Mock: Simulación de NeuroSky conectada.")
+            else:
+                if not self.port:
+                    raise ValueError("El puerto serial no ha sido especificado.")
+                self.interface = NeuroSkyInterface(self.port)
+                print(f"Conectado a NeuroSky en el puerto {self.port}.")
         except Exception as e:
-            raise ConnectionError(f"Error inesperado: {e}")
+            print(f"Error de conexión: {e}")
 
     def collect_data(self):
+        
         """
-        Recolectar datos del dispositivo de forma continua en un hilo separado. Detener con stop().
+        Colecta datos usando el dispositivo o el mock.
         """
         if not self.interface:
-            raise ValueError("No se ha establecido conexión con el dispositivo.")
+            raise ValueError("No se ha establecido conexión con el dispositivo o mock.")
         
         self.running = True
         self.raw_data = []
 
         try:
-            # Si se requiere guardar en CSV, abrir el archivo
             if self.save_to_csv:
                 self.csv_file_handle = open(self.csv_file, mode='w', newline='')
                 self.csv_writer = csv.writer(self.csv_file_handle)
-                self.csv_writer.writerow(['Timestamp', self.signal_type.capitalize()])  # Escribir encabezados
+                self.csv_writer.writerow(['Timestamp', self.signal_type.capitalize()])
 
             def collect():
+                #count_me_out = 0
                 while self.running:
                     try:
+                        if self.use_mock:
+                            self.interface.update_mock_data()  # Generar datos mock
                         signal_value = self.get_signal_value(self.signal_type)
+                        current_time = time.time()
                         self.raw_data.append(signal_value)
 
-                        # Guardar en el CSV el valor con el tiempo actual (si se ha habilitado)
+                        #esto se lo añadi yo
+                        #count_me_out += 1
+                        self.brainwave_processor.add_data_point(current_time,signal_value)
+                        if self.brainwave_processor.has_sufficient_data():
+                            analysis_result = self.brainwave_processor.analyze_waves()
+                            print(f"Análisis de ondas: {analysis_result}")
+                            #if count_me_out == 5120:
+                                #self.brainwave_processor.plot_direct()
+                        
                         if self.save_to_csv:
                             self.csv_writer.writerow([time.time(), signal_value])
-                            self.csv_file_handle.flush()  # Forzar escritura en disco
-
-                        if len(self.raw_data) > 512:  # Limita los datos a los últimos 512 puntos
+                            self.csv_file_handle.flush()
+                        if len(self.raw_data) > 512:
                             self.raw_data.pop(0)
                         time.sleep(1.0 / self.sample_freq)
                     except Exception as e:
                         print(f"Error durante la recolección de datos: {e}")
                         self.running = False
 
-            # Iniciar el hilo de recolección de datos
             self.data_thread = threading.Thread(target=collect)
             self.data_thread.start()
 
         except IOError as e:
             print(f"Error al abrir o escribir en el archivo CSV: {e}")
             self.running = False
-
         #DUNNE no entiendo por que el segundo parametero siempre es cero? PEROOO
         #de este codigo solo podriamos mandar a llamar directamente
         # self.interface.waves.get('attention', 0) para obtener el valor de attention directamente donde esto se este llamando a llamar
@@ -141,6 +159,8 @@ class NeuroSkyDataCollector:
             self.interface.stop()
         if self.csv_file_handle:
             self.csv_file_handle.close()  # Cerrar el archivo CSV correctamente
+        #tambien le movi yo
+        self.brainwave_processor.process_file("data.csv")
         print("Recolección de datos detenida y archivo CSV cerrado.")
 
 
@@ -220,44 +240,3 @@ def validate_signal_type(signal_type):
         #de neuro_tracker, pero este es un buen ejemplo de como la señal debe de ser tratada
         #las clases de  igual no deberian de ser cambiadas, ya que se encargan de la comunicacion con todo lo demas
 
-
-def main():
-    try:
-        port = input("Especifica el puerto serial (ej. COM3 o /dev/ttyUSB0): ").strip()
-        signal_type = input("Especifica el tipo de señal (raw, attention, meditation, blink, delta, theta, low-alpha, high-alpha, low-beta, high-beta, low-gamma, mid-gamma): ").strip().lower()
-
-        # Validar el tipo de señal
-        validate_signal_type(signal_type)
-
-        graph = input("¿Quieres graficar los datos en tiempo real? (s/n): ").strip().lower() == 's'
-        
-        # Preguntar si el usuario quiere guardar los datos en un archivo CSV
-        save_to_csv = input("¿Quieres guardar los datos en un archivo CSV? (s/n): ").strip().lower() == 's'
-        csv_file = ""
-        if save_to_csv:
-            csv_file = input("Especifica el nombre del archivo CSV donde guardar los datos (ej. data.csv): ").strip()
-
-        collector = NeuroSkyDataCollector(SAMPLE_FREQ, port, signal_type, graph, csv_file, save_to_csv)
-        collector.connect()
-
-        if collector.interface is None:
-            raise ValueError("No se pudo establecer conexión con el dispositivo.")
-
-        if graph:
-            collector.collect_data()
-            collector.animate_plot()
-        else:
-            collector.collect_data()
-            collector.print_data()  # Imprimir los datos en lugar de graficar
-
-    except KeyboardInterrupt:
-        print("Interrupción recibida, deteniendo recolección.")
-    except Exception as e:
-        print(f"Se produjo un error: {e}")
-    finally:
-        if 'collector' in locals():
-            collector.stop()
-
-
-if __name__ == "__main__":
-    main()
