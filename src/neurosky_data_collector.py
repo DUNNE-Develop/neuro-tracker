@@ -69,6 +69,7 @@ class NeuroSkyDataCollector:
             print(f"Error de conexión: {e}")
 
     def collect_data(self):
+        
         """
         Colecta datos usando el dispositivo o el mock.
         """
@@ -85,6 +86,7 @@ class NeuroSkyDataCollector:
                 self.csv_writer.writerow(['Timestamp', self.signal_type.capitalize()])
 
             def collect():
+                #count_me_out = 0
                 while self.running:
                     try:
                         if self.use_mock:
@@ -94,11 +96,13 @@ class NeuroSkyDataCollector:
                         self.raw_data.append(signal_value)
 
                         #esto se lo añadi yo
+                        #count_me_out += 1
                         self.brainwave_processor.add_data_point(current_time,signal_value)
                         if self.brainwave_processor.has_sufficient_data():
                             analysis_result = self.brainwave_processor.analyze_waves()
                             print(f"Análisis de ondas: {analysis_result}")
-                            #self.brainwave_processor.plot_direct()  # Graficar si es necesario
+                            #if count_me_out == 5120:
+                                #self.brainwave_processor.plot_direct()
                         
                         if self.save_to_csv:
                             self.csv_writer.writerow([time.time(), signal_value])
@@ -156,7 +160,7 @@ class NeuroSkyDataCollector:
         if self.csv_file_handle:
             self.csv_file_handle.close()  # Cerrar el archivo CSV correctamente
         #tambien le movi yo
-        #self.brainwave_processor.process_file("data.csv")
+        self.brainwave_processor.process_file("data.csv")
         print("Recolección de datos detenida y archivo CSV cerrado.")
 
 
