@@ -12,6 +12,8 @@ from src.modules.neurosky_interface import NeuroSkyInterface
 
 import threading
 
+import BrainwaveProcessor as bp
+
 SAMPLE_FREQ = 512.0
 
         #DUNNE esta clase es la "MADRE" de todos los modules, por lo que es lo primero que deberiamos de modificar antes de 
@@ -45,6 +47,9 @@ class NeuroSkyDataCollector:
         self.csv_writer = None  # Variable para manejar el archivo CSV
         self.csv_file_handle = None  # Manejador del archivo CSV
         self.use_mock = use_mock
+
+        #instancia de la clase brainwaveprocessor
+        self.brainwave_processor = bp.BrainwaveProcessor()
 
     def connect(self):
         """
@@ -85,7 +90,16 @@ class NeuroSkyDataCollector:
                         if self.use_mock:
                             self.interface.update_mock_data()  # Generar datos mock
                         signal_value = self.get_signal_value(self.signal_type)
+                        current_time = time.time()
                         self.raw_data.append(signal_value)
+
+                        #esto se lo añadi yo
+                        self.brainwave_processor.add_data_point(current_time,signal_value)
+                        if self.brainwave_processor.has_sufficient_data():
+                            analysis_result = self.brainwave_processor.analyze_waves()
+                            print(f"Análisis de ondas: {analysis_result}")
+                            #self.brainwave_processor.plot_direct()  # Graficar si es necesario
+                        
                         if self.save_to_csv:
                             self.csv_writer.writerow([time.time(), signal_value])
                             self.csv_file_handle.flush()
@@ -141,6 +155,8 @@ class NeuroSkyDataCollector:
             self.interface.stop()
         if self.csv_file_handle:
             self.csv_file_handle.close()  # Cerrar el archivo CSV correctamente
+        #tambien le movi yo
+        #self.brainwave_processor.process_file("data.csv")
         print("Recolección de datos detenida y archivo CSV cerrado.")
 
 
