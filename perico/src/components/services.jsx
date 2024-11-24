@@ -7,8 +7,7 @@ export const Services = (props) => {
         <div className="section-title">
           <h2>Nuestra Vision</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed
-            dapibus leonec.
+          Nuestro objetivo es mejorar la calidad de vida de los estudiantes a través de innovación, colaboración y prácticas responsables, creando un impacto positivo en la comunidad universitaria.
           </p>
         </div>
         <div className="row">

@@ -4,18 +4,18 @@
     "paragraph": "Sabores Universitarios, Entregas Rapidas"
   },
   "About": {
-    "paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "paragraph": "Nuestra misión es empoderar a los estudiantes de la UNAM mediante la creación de una plataforma innovadora que promueve el comercio local y ofrece una alternativa económica sostenible. Facilitamos la venta y distribución de comida casera hecha por estudiantes, utilizando los recursos de transporte del campus para garantizar entregas rápidas y eficientes.",
     "Why": [
-      "Lorem ipsum dolor",
-      "Tempor incididunt",
-      "Lorem ipsum dolor",
-      "Incididunt ut labore"
+      "Entrega rápida y eficiente",
+      "Red de apoyo a estudiantes",
+      "Comida casera",
+      "Comercio local"
     ],
     "Why2": [
-      "Aliquip ex ea commodo",
-      "Lorem ipsum dolor",
-      "Exercitation ullamco",
-      "Lorem ipsum dolor"
+      "Creador de tu horario",
+      "Facil de usar",
+      "Variedad de platillos",
+      "Confiable"
     ]
   },
   "Gallery": [
@@ -68,117 +68,117 @@
   "Services": [
     {
       "icon": "fa fa-wordpress",
-      "name": "Lorem ipsum dolor",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at."
+      "name": "Uno",
+      "text": "Ser la plataforma líder en la UNAM que impulsa el emprendimiento estudiantil."
     },
     {
       "icon": "fa fa-cart-arrow-down",
-      "name": "Consectetur adipiscing",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at."
+      "name": "Dos",
+      "text": "Promover el comercio local y fortalecer la comunidad universitaria."
     },
     {
       "icon": "fa fa-cloud-download",
-      "name": "Lorem ipsum dolor",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at."
+      "name": "Tres",
+      "text": "Mejorar la calidad de vida de los estudiantes con soluciones prácticas.."
     },
     {
       "icon": "fa fa-language",
-      "name": "Consectetur adipiscing",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at."
+      "name": "Cuatro",
+      "text": "Ser un modelo de innovación, sostenibilidad y economía colaborativa."
     },
     {
       "icon": "fa fa-plane",
-      "name": "Lorem ipsum dolor",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at."
+      "name": "Cinco",
+      "text": "Combinar tecnología y educación para generar impacto positivo."
     },
     {
       "icon": "fa fa-pie-chart",
-      "name": "Consectetur adipiscing",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at."
+      "name": "Seis",
+      "text": "Fomentar prácticas responsables que beneficien a la universidad y al medio ambiente."
     }
   ],
   "Testimonials": [
     {
       "img": "img/testimonials/01.jpg",
-      "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
-      "name": "John Doe"
+      "text": "\"Gracias a esta plataforma, siempre puedo pedir comida deliciosa y casera sin gastar de más. ¡Ideal para todo tipo de personas!\"",
+      "name": "Rodrigo Sanchez"
     },
     {
       "img": "img/testimonials/02.jpg",
-      "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
-      "name": "Johnathan Doe"
+      "text": "\"La aplicación es súper intuitiva. En unos cuantos clics ya tengo mi pedido confirmado, y siempre llega a tiempo.\"",
+      "name": "Ethan Sanchez"
     },
     {
       "img": "img/testimonials/03.jpg",
-      "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
-      "name": "John Doe"
+      "text": "\"Como estudiante, encontré en esta plataforma una oportunidad para vender mi comida casera. Ha sido una gran ayuda económica.\"",
+      "name": "Aaron Jimenez"
     },
     {
       "img": "img/testimonials/04.jpg",
-      "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
-      "name": "Johnathan Doe"
+      "text": "\"Nunca había sido tan fácil acceder a comida rica, económica y hecha por otros estudiantes. ¡Es increíble apoyar a mi comunidad!\"",
+      "name": "Alison Becerra"
     },
     {
       "img": "img/testimonials/05.jpg",
-      "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
-      "name": "John Doe"
+      "text": "\"La app no solo me ha ayudado a ahorrar dinero, sino también tiempo. Siempre recibo comida fresca y justo cuando la necesito.\"",
+      "name": "Antonio Kernell"
     },
     {
       "img": "img/testimonials/06.jpg",
-      "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
-      "name": "Johnathan Doe"
+      "text": "\"Empecé vendiendo postres aquí, y ahora puedo cubrir varios de mis gastos como estudiante. ¡Es una idea brillante!\"",
+      "name": "Sofia Benitez"
     }
   ],
   "Team": [
     {
       "img": "img/team/01.jpg",
-      "name": "John Doe",
-      "job": "Director"
+      "name": "Mario Alberto Rocha Salazar",
+      "job": "Quality Engineer"
     },
     {
       "img": "img/team/02.jpg",
-      "name": "Mike Doe",
-      "job": "Senior Designer"
+      "name": "Asahel Said Main Cerezo",
+      "job": "Software Architect"
     },
     {
       "img": "img/team/03.jpg",
-      "name": "Jane Doe",
-      "job": "Senior Designer"
+      "name": "Laura Itzel Rodríguez Dimayuga",
+      "job": "Project Leader"
     },
     {
       "img": "img/team/04.jpg",
-      "name": "Karen Doe",
-      "job": "Project Manager"
+      "name": "Cielo López Villalba",
+      "job": "Communication Leader"
     }
   ],
   "Contact": {
-    "address": "4321 California St, San Francisco, CA 12345 ",
-    "phone": "+1 123 456 1234",
-    "email": "info@company.com",
-    "facebook": "fb.com",
-    "twitter": "twitter.com",
-    "youtube": "youtube.com"
+    "address": "Ciudad Universitaria, CDMX, México",
+    "phone": "+55 1234 5678",
+    "email": "unamarket@unam.com.mx",
+    "facebook": "facebook/UNAMarket.com",
+    "twitter": "twitter/UNAMarket.com",
+    "youtube": "youtube/UNAMarket.com"
   },
   "Features": [
     {
       "icon": "fa fa-comments-o",
-      "title": "Lorem ipsum",
-      "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
+      "title": "Sostenibilidad",
+      "text": "Innovación. sostenibilidad y apoyo mutuo. Utilizamos el transporte público"
     },
     {
       "icon": "fa fa-bullhorn",
-      "title": "Lorem ipsum",
-      "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
+      "title": "Solidaridad",
+      "text": "Fomentando la solidaridad y el emprendimiento dentro del campus universitario."
     },
     {
       "icon": "fa fa-group",
-      "title": "Lorem ipsum",
-      "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
+      "title": "Comunidad",
+      "text": "Comunidad solidaria, emprendimiento estudiantil, economia colaborativa en UNAM"
     },
     {
       "icon": "fa fa-magic",
-      "title": "Lorem ipsum",
-      "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
+      "title": "Conciencia Social",
+      "text": "Nos dirigimos a todo tipo de estudiantes, funcionando como una red de apoyo y oportunidades."
     }
   ]
 }
