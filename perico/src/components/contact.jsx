@@ -42,10 +42,10 @@ export const Contact = (props) => {
           <div className="col-md-8">
             <div className="row">
               <div className="section-title">
-                <h2>Get In Touch</h2>
+                <h2>Contacto</h2>
                 <p>
-                  Please fill out the form below to send us an email and we will
-                  get back to you as soon as possible.
+                  Por favor llena el formulario de abajo para contactarnos y
+                  nos pondremos en contacto contigo lo antes posible.
                 </p>
               </div>
               <form name="sentMessage" validate onSubmit={handleSubmit}>
@@ -57,7 +57,7 @@ export const Contact = (props) => {
                         id="name"
                         name="name"
                         className="form-control"
-                        placeholder="Name"
+                        placeholder="Nombre"
                         required
                         onChange={handleChange}
                       />
@@ -71,7 +71,7 @@ export const Contact = (props) => {
                         id="email"
                         name="email"
                         className="form-control"
-                        placeholder="Email"
+                        placeholder="Correo Electronico"
                         required
                         onChange={handleChange}
                       />
@@ -85,7 +85,7 @@ export const Contact = (props) => {
                     id="message"
                     className="form-control"
                     rows="4"
-                    placeholder="Message"
+                    placeholder="Mensaje"
                     required
                     onChange={handleChange}
                   ></textarea>
